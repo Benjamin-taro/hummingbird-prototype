@@ -15,7 +15,7 @@ let cmudictCache: CmuDict | null = null;
 /** cmudict.json を遅延ロード */
 async function loadCmudict(): Promise<CmuDict> {
   if (cmudictCache) return cmudictCache;
-  const res = await fetch('/cmudict.json');
+  const res = await fetch(`${import.meta.env.BASE_URL}cmudict.json`);
   if (!res.ok) throw new Error('Failed to load cmudict.json');
   cmudictCache = await res.json();
   return cmudictCache!;
